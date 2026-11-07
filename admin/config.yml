@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: bakrSa/Bakr
+  branch: main
+  base_url: https://bakr-sa.pages.dev
+  auth_endpoint: api/auth
+
+site_url: https://bakr-sa.pages.dev
+display_url: https://bakr-sa.pages.dev
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: website
+    label: Website content
+    files:
+      - name: games
+        label: Games and solutions
+        file: games.json
+        format: json
+        fields:
+          - label: Games
+            name: games
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - {label: Game name, name: name, widget: string}
+              - {label: Icon emoji, name: emoji, widget: string}
+              - {label: Accent color, name: glow, widget: color}
+              - {label: Solution text (English), name: solution_en, widget: text, required: false}
+              - {label: Solution text (Arabic), name: solution_ar, widget: text, required: false}
