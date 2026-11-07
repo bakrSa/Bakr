@@ -5,49 +5,74 @@
       "emoji": "🎯",
       "glow": "#2a624e",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Disconnect"
+      ]
     },
     {
       "name": "Call of Duty",
       "emoji": "🪖",
       "glow": "#615c39",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Modern Warfare (MW1–MW3) — Owens",
+        "Black Ops 7 — Thunex"
+      ]
     },
     {
       "name": "FiveM",
       "emoji": "🚘",
       "glow": "#3a546e",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Macho"
+      ]
     },
     {
       "name": "ARC Raiders",
       "emoji": "🚀",
       "glow": "#665e3b",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Arcane",
+        "Ancient"
+      ]
     },
     {
       "name": "FC 27",
       "emoji": "⚽",
       "glow": "#3b6a51",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Futlic"
+      ]
     },
     {
       "name": "Overwatch 2",
       "emoji": "⚡",
       "glow": "#715e36",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Inferno",
+        "Swan"
+      ]
     },
     {
       "name": "Dead by Daylight",
       "emoji": "🌒",
       "glow": "#5e3c56",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Nova",
+        "Unlocker"
+      ]
     },
     {
       "name": "Marvel Rivals",
@@ -61,7 +86,10 @@
       "emoji": "🛠️",
       "glow": "#76533b",
       "solution_en": "",
-      "solution_ar": ""
+      "solution_ar": "",
+      "variants": [
+        "Nova"
+      ]
     },
     {
       "name": "Apex Legends",
