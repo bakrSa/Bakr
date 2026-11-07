@@ -1,0 +1,81 @@
+{
+  "games": [
+    {
+      "name": "Fortnite",
+      "emoji": "🎯",
+      "glow": "#2a624e",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Call of Duty",
+      "emoji": "🪖",
+      "glow": "#615c39",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "FiveM",
+      "emoji": "🚘",
+      "glow": "#3a546e",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "ARC Raiders",
+      "emoji": "🚀",
+      "glow": "#665e3b",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "FC 27",
+      "emoji": "⚽",
+      "glow": "#3b6a51",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Overwatch 2",
+      "emoji": "⚡",
+      "glow": "#715e36",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Dead by Daylight",
+      "emoji": "🌒",
+      "glow": "#5e3c56",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Marvel Rivals",
+      "emoji": "🦸",
+      "glow": "#684c4e",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Rust",
+      "emoji": "🛠️",
+      "glow": "#76533b",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "Apex Legends",
+      "emoji": "🔺",
+      "glow": "#714344",
+      "solution_en": "",
+      "solution_ar": ""
+    },
+    {
+      "name": "HWID Spoofer Temp/Perm",
+      "emoji": "🛡️",
+      "glow": "#425d65",
+      "solution_en": "",
+      "solution_ar": ""
+    }
+  ]
+}
