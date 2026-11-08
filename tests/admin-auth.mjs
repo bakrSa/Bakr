@@ -11,11 +11,11 @@ assert.equal((await login.onRequestGet({request:new Request('https://preview.pag
 const redir=await login.onRequestGet({request:req('/auth/login'),env});
 assert.equal(new URL(redir.headers.get('location')).searchParams.get('redirect_uri'),origin+'/auth/callback');
 assert.equal((await callback.onRequestGet({request:req('/auth/callback?code=x&state=wrong'),env})).status,403);
-let ownerId=353833868, written;
+let ownerId=353833868, loginName='bakrSa', canPush=true, written;
 globalThis.fetch=async(url,options)=>{
  if(url.includes('/access_token'))return Response.json({access_token:'fake-test-token'});
- if(url.endsWith('/user'))return Response.json({id:ownerId,login:'bakrSa'});
- if(url.endsWith('/repos/bakrSa/Bakr'))return Response.json({permissions:{push:true}});
+ if(url.endsWith('/user'))return Response.json({id:ownerId,login:loginName});
+ if(url.endsWith('/repos/bakrSa/Bakr'))return Response.json({permissions:{push:canPush}});
  if(options.method==='PUT'){written=JSON.parse(options.body);return Response.json({content:{sha:'b'.repeat(40)},commit:{sha:'c'.repeat(40)}})}
  throw Error('Unexpected mock request');
 };
@@ -32,3 +32,11 @@ const catalog=JSON.parse(await readFile(new URL('../assets/catalog.json',import.
 assert.equal((await post({sha:'a'.repeat(40),catalog})).status,200);
 assert.equal(written.branch,'main');assert.deepEqual(JSON.parse(Buffer.from(written.content,'base64').toString()),catalog);
 console.log('PASS: missing config, preview rejection, callback URL, OAuth state, immutable owner ID, encrypted session, cookie clearing, CSRF, invalid catalogs, and mocked GitHub save');
+
+ownerId=354216726;loginName='Asiri1112';canPush=false;
+assert.equal((await callback.onRequestGet({request:cbReq(),env})).status,403);
+canPush=true;const friend=await callback.onRequestGet({request:cbReq(),env});assert.equal(friend.status,302);
+const friendCookie=friend.headers.getSetCookie()[0].split(';')[0];
+assert.equal((await api.onRequestPost({request:req('/api/admin',{method:'POST',headers:{Cookie:friendCookie,Origin:origin},body:JSON.stringify({sha:'a'.repeat(40),catalog})}),env})).status,200);
+ownerId=1;assert.equal((await callback.onRequestGet({request:cbReq(),env})).status,403);
+console.log('PASS: invited account requires matching ID and repository write permission; its session can save');
