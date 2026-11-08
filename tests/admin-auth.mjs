@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const moduleAt=async p=>import('data:text/javascript;base64,'+Buffer.from(await readFile(new URL('../'+p,import.meta.url))).toString('base64'));
+const api=await moduleAt('functions/api/admin.js'),login=await moduleAt('functions/auth/login.js'),callback=await moduleAt('functions/auth/callback.js');
+const env={GITHUB_CLIENT_ID:'test-id',GITHUB_CLIENT_SECRET:'test-secret',GITHUB_ADMIN_LOGIN:'bakrSa',ADMIN_SESSION_SECRET:'test-only-session-secret-not-for-production'};
+const origin='https://bakr-sa.pages.dev';
+const req=(path,opts={})=>new Request(origin+path,opts);
+assert.equal((await api.onRequestGet({request:req('/api/admin'),env})).status,401);
+assert.equal((await login.onRequestGet({request:req('/auth/login'),env:{}})).status,503);
+assert.equal((await login.onRequestGet({request:new Request('https://preview.pages.dev/auth/login'),env})).status,403);
+const redir=await login.onRequestGet({request:req('/auth/login'),env});
+assert.equal(new URL(redir.headers.get('location')).searchParams.get('redirect_uri'),origin+'/auth/callback');
+assert.equal((await callback.onRequestGet({request:req('/auth/callback?code=x&state=wrong'),env})).status,403);
+let ownerId=353833868, written;
+globalThis.fetch=async(url,options)=>{
+ if(url.includes('/access_token'))return Response.json({access_token:'fake-test-token'});
+ if(url.endsWith('/user'))return Response.json({id:ownerId,login:'bakrSa'});
+ if(url.endsWith('/repos/bakrSa/Bakr'))return Response.json({permissions:{push:true}});
+ if(options.method==='PUT'){written=JSON.parse(options.body);return Response.json({content:{sha:'b'.repeat(40)},commit:{sha:'c'.repeat(40)}})}
+ throw Error('Unexpected mock request');
+};
+const cbReq=()=>req('/auth/callback?code=test&state=test',{headers:{Cookie:'bakr_oauth_state=test'}});
+ownerId=1;assert.equal((await callback.onRequestGet({request:cbReq(),env})).status,403);
+ownerId=353833868;const response=await callback.onRequestGet({request:cbReq(),env});
+assert.equal(response.status,302);assert.equal(response.headers.getSetCookie().length,2);
+const cookie=response.headers.getSetCookie()[0].split(';')[0];
+const post=(body,source=origin)=>api.onRequestPost({request:req('/api/admin',{method:'POST',headers:{Cookie:cookie,Origin:source},body:JSON.stringify(body)}),env});
+assert.equal((await post(null)).status,400);
+assert.equal((await post({},'https://other.example')).status,403);
+assert.equal((await post({sha:'a'.repeat(40),catalog:{games:[null],guides:[null]}})).status,400);
+const catalog=JSON.parse(await readFile(new URL('../assets/catalog.json',import.meta.url)));
+assert.equal((await post({sha:'a'.repeat(40),catalog})).status,200);
+assert.equal(written.branch,'main');assert.deepEqual(JSON.parse(Buffer.from(written.content,'base64').toString()),catalog);
+console.log('PASS: missing config, preview rejection, callback URL, OAuth state, immutable owner ID, encrypted session, cookie clearing, CSRF, invalid catalogs, and mocked GitHub save');

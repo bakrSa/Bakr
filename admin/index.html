@@ -3,8 +3,8 @@ const $=id=>document.getElementById(id);let data,sha,gi=0,di=0,si=0;
 function options(id,items,fn){$(id).replaceChildren();items.forEach((x,i)=>{let o=document.createElement("option");o.value=i;o.textContent=fn(x);$(id).append(o)})}
 function showGame(){let g=data.games[gi];$("name").value=g.name;$("image").value=g.image||"";$("products").value=g.products.join("\n")}
 function saveGame(){let g=data.games[gi];g.name=$("name").value;g.image=$("image").value;g.products=$("products").value.split("\n").map(s=>s.trim()).filter(Boolean)}
-function showSection(){let s=data.guides[di].sections[si];$("sectionTitle").value=s.title;$("sectionHtml").value=s.html}
-function saveSection(){let s=data.guides[di].sections[si];s.title=$("sectionTitle").value;s.html=$("sectionHtml").value}
+function showSection(){let s=data.guides[di].sections[si];$("sectionTitle").disabled=$("sectionHtml").disabled=!s;$("sectionTitle").value=s?.title||"";$("sectionHtml").value=s?.html||""}
+function saveSection(){let s=data.guides[di].sections[si];if(!s)return;s.title=$("sectionTitle").value;s.html=$("sectionHtml").value}
 function showGuide(){options("section",data.guides[di].sections,s=>s.title);si=0;$("guideName").value=data.guides[di].name;showSection()}
 function saveGuide(){data.guides[di].name=$("guideName").value;saveSection()}
 $("game").onchange=()=>{saveGame();gi=+$("game").value;showGame()};
@@ -12,6 +12,6 @@ $("guide").onchange=()=>{saveGuide();di=+$("guide").value;showGuide()};
 $("section").onchange=()=>{saveSection();si=+$("section").value;showSection()};
 async function load(){try{let r=await fetch("/api/admin",{cache:"no-store"});if(r.status===401){$("login").classList.remove("hidden");$("editor").classList.add("hidden");return}let j=await r.json();if(!r.ok)throw Error(j.error);data=j.catalog;sha=j.sha;gi=di=si=0;options("game",data.games,g=>g.name);options("guide",data.guides,g=>g.name);showGame();showGuide();$("editor").classList.remove("hidden");$("login").classList.add("hidden");$("status").textContent="متصل: "+j.login}catch(e){$("status").textContent="خطأ: "+e.message}}
 $("reload").onclick=()=>{if(confirm("تجاهل التغييرات؟"))load()};
-$("save").onclick=async()=>{saveGame();saveGuide();$("save").disabled=true;$("status").textContent="جاري الحفظ";try{let r=await fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha,catalog:data})});let j=await r.json();if(!r.ok)throw Error(j.error);sha=j.sha;$("status").textContent="تم الحفظ في GitHub: "+j.commit}catch(e){$("status").textContent="فشل: "+e.message}finally{$("save").disabled=false}};
+$("save").onclick=async()=>{saveGame();saveGuide();$("save").disabled=true;$("status").textContent="جاري الحفظ";try{let r=await fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha,catalog:data})});let j=await r.json();if(!r.ok)throw Error(r.status===409?"تغيّر المحتوى في GitHub. احتفظ بتعديلاتك ثم أعد التحميل لتجنب الكتابة فوق تغييرات أخرى.":j.error);sha=j.sha;$("status").textContent="تم الحفظ في GitHub. النشر عبر Cloudflare قيد الانتظار: "+j.commit}catch(e){$("status").textContent="فشل: "+e.message}finally{$("save").disabled=false}};
 load();
 </script></body></html>

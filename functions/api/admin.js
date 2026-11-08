@@ -8,7 +8,7 @@ async function session(request,env){
   const key=await crypto.subtle.importKey("raw",await crypto.subtle.digest("SHA-256",enc.encode(env.ADMIN_SESSION_SECRET)),{name:"AES-GCM"},false,["decrypt"]);
   const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:decode(iv)},key,decode(data));
   const obj=JSON.parse(new TextDecoder().decode(plain));
-  if(obj.exp<Date.now()||obj.login.toLowerCase()!==env.GITHUB_ADMIN_LOGIN.toLowerCase())return null;
+  if(obj.id!=="353833868"||!Number.isFinite(obj.exp)||obj.exp<=Date.now()||typeof obj.token!=="string"||obj.login.toLowerCase()!==env.GITHUB_ADMIN_LOGIN.toLowerCase())return null;
   return obj;
  }catch{return null}
 }
@@ -28,9 +28,12 @@ export async function onRequestPost({request,env}){
  const s=await session(request,env);if(!s)return json({error:"Login required"},401);
  if(request.headers.get("Origin")!==new URL(request.url).origin)return json({error:"Invalid origin"},403);
  if(Number(request.headers.get("Content-Length")||0)>2000000)return json({error:"Payload too large"},413);
- let body;try{body=await request.json()}catch{return json({error:"Invalid JSON"},400)}
- if(typeof body.sha!=="string"||!body.catalog||!Array.isArray(body.catalog.games)||!Array.isArray(body.catalog.guides))return json({error:"Invalid catalog"},400);
+ let body;try{const raw=await request.text();if(enc.encode(raw).length>2000000)return json({error:"Payload too large"},413);body=JSON.parse(raw)}catch{return json({error:"Invalid JSON"},400)}
+ if(!body||typeof body.sha!=="string"||!/^[0-9a-f]{40}$/.test(body.sha)||!body.catalog||!Array.isArray(body.catalog.games)||!Array.isArray(body.catalog.guides))return json({error:"Invalid catalog"},400);
  if(body.catalog.games.length>100||body.catalog.guides.length>500)return json({error:"Catalog limit exceeded"},400);
+ const validGame=g=>g&&typeof g.name==="string"&&typeof g.slug==="string"&&Array.isArray(g.products)&&g.products.every(p=>typeof p==="string")&&(g.image===undefined||typeof g.image==="string");
+ const validGuide=g=>g&&typeof g.id==="string"&&typeof g.name==="string"&&Array.isArray(g.sections)&&g.sections.every(s=>s&&typeof s.title==="string"&&typeof s.html==="string");
+ if(!body.catalog.games.length||!body.catalog.guides.length||!body.catalog.games.every(validGame)||!body.catalog.guides.every(validGuide))return json({error:"Invalid game or guide fields"},400);
  const serialized=JSON.stringify(body.catalog,null,2)+"\n";
  if(serialized.length>1500000)return json({error:"Catalog too large"},413);
  const bytes=enc.encode(serialized);
