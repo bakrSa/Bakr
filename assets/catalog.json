@@ -326,11 +326,6 @@
           "html": "<div>\n<div>\n<span>✨</span>\n</div>\n<p>نقدم لك أقوى الخصائص الاحترافية مع واجهة تحكم مدمجة وسلسة تضمن لك أفضل أداء:</p>\n<div>\n<div>\n<div>\n<span>🎯</span>\n<div>\n<strong>تحكم متقدم بالـ Aimbot</strong>\n<div>دعم تام لنظامي Silent Aimbot و Memory Aimbot مع تخصيص العظام والنعومة بدقة.</div>\n</div>\n</div>\n<div>\n<span>👁️</span>\n<div>\n<strong>أنظمة الرؤية والـ Visuals</strong>\n<div>كشف اللاعبين والعالم المحيط (Players &amp; World) بخيارات تخصيص عالية.</div>\n</div>\n</div>\n<div>\n<span>⚙️</span>\n<div>\n<strong>خصائص إضافية شاملة</strong>\n<div>تحكم كامل بالمركبات، اللاعبين، ودعم ميزة Lua Menu لمرونة إضافية.</div>\n</div>\n</div>\n</div>\n<!-- صورة المنيو الفعلية -->\n<div>\n<img alt=\"واجهة تحكم Macho Menu\" loading=\"lazy\" src=\"/assets/guide-images/e1a7ef3d901fa06f.webp\"/>\n</div>\n</div>\n</div>"
         },
         {
-          "id": "section-3",
-          "title": "شرح الفيديو التوضيحي للتشغيل",
-          "html": "<div>\n<div>\n<span>🎥</span>\n</div>\n<p>شاهد الفيديو التعليمي الرسمي المعتمد لتوضيح خطوات الحقن والتشغيل خطوة بخطوة:</p>\n<div>\n<a href=\"https://youtu.be/w77IYTnUlxg\" rel=\"noopener noreferrer\" target=\"_blank\">Watch tutorial / مشاهدة الشرح</a>\n</div>\n</div>"
-        },
-        {
           "id": "section-4",
           "title": "حل مشكلة مجلد Virtual (OneDrive)",
           "html": "<div>\n<div>\n<span>☁️</span>\n</div>\n<p>عند ظهور خطأ متعلق بـ Virtual folders كما موضح بالصورة:</p>\n<div>\n<div>\n<h4>📁 نقل اللودر خارج مسار ون درايف</h4>\n<p>يجب عليك نقل ملف أو لودر التشغيل حصرياً إلى مجلد أساسي في الجهاز غير مرتبط بالسحاب (مثل وضع الملف مباشرة في القرص <code>C:</code> أو سطح المكتب العادي بعيداً عن مجلد المستندات المتزامن مع OneDrive).</p>\n</div>\n<div>\n<img alt=\"Virtual Folder Error\" loading=\"lazy\" src=\"/assets/guide-images/6d07f86c4a5aed09.webp\"/>\n</div>\n</div>\n</div>"
@@ -358,7 +353,7 @@
         {
           "id": "error-0",
           "title": "⚙️ مشكلة: إذا شغلت اللعبة ولم يظهر لك المنيو (القائمة)",
-          "html": "<div>\n<div>\n<p><strong>الحل:</strong> غالباً تكون المشكلة بسبب تعارض تسريع الأجهزة (Hardware Acceleration) في برنامج الديسكورد.</p>\n<ul>\n<li>افتح إعدادات الديسكورد وتوجه إلى <strong>Appearance</strong> (المظهر) كما هو موضح في الصورة بالأسفل.</li>\n<li>قم بإيقاف تفعيل خيار <strong>Hardware Acceleration</strong> وأعد تشغيل الديسكورد.</li>\n<li>لمزيد من التوضيح والتفاصيل، يمكنك مشاهدة هذا الشرح المرئي: <a href=\"https://youtu.be/Csb9LkITiAc?si=ogU6ycXo6ht9mvGK\" rel=\"noopener noreferrer\" target=\"_blank\">🎬 فيديو حل مشكلة عدم ظهور المنيو</a></li>\n</ul>\n<div>\n\n</div>\n</div>\n</div>"
+          "html": "<div>\n<div>\n<p><strong>الحل:</strong> غالباً تكون المشكلة بسبب تعارض تسريع الأجهزة (Hardware Acceleration) في برنامج الديسكورد.</p>\n<ul>\n<li>افتح إعدادات الديسكورد وتوجه إلى <strong>Appearance</strong> (المظهر) كما هو موضح في الصورة بالأسفل.</li>\n<li>قم بإيقاف تفعيل خيار <strong>Hardware Acceleration</strong> وأعد تشغيل الديسكورد.</li>\n<li>لمزيد من التوضيح والتفاصيل، يمكنك مشاهدة هذا الشرح المرئي: </li>\n</ul>\n<div>\n\n</div>\n</div>\n</div>"
         },
         {
           "id": "error-1",
@@ -423,7 +418,7 @@
         {
           "id": "section-1",
           "title": "تحميل اللودر وروابط شروحات المنتج",
-          "html": "<div>\n<div>\n<span>📥</span>\n</div>\n<p>تفضل بالتحميل المباشر للودر المحدث أو معاينة الشروحات من خلال الأزرار التالية (تفتح في صفحات جديدة):</p>\n<div>\n<a href=\"https://undetect.net/download/loader/9e68ng52j9kpqt8vxwt7eqpvb\" rel=\"noopener noreferrer\" target=\"_blank\">📥 اضغط هنا لبدء تحميل لودر Ancient</a>\n<a href=\"https://youtu.be/WJXuWcKyI6Q\" rel=\"noopener noreferrer\" target=\"_blank\">🎬 رابط الشرح المرئي الخاص بالكرسي</a>\n</div>\n</div>"
+          "html": "<div>\n<div>\n<span>📥</span>\n</div>\n<p>تفضل بالتحميل المباشر للودر المحدث أو معاينة الشروحات من خلال الأزرار التالية (تفتح في صفحات جديدة):</p>\n<div>\n<a href=\"https://undetect.net/download/loader/9e68ng52j9kpqt8vxwt7eqpvb\" rel=\"noopener noreferrer\" target=\"_blank\">📥 اضغط هنا لبدء تحميل لودر Ancient</a>\n\n</div>\n</div>"
         },
         {
           "id": "section-2",
@@ -433,7 +428,7 @@
         {
           "id": "error-0",
           "title": "⚙️ مشكلة: إذا شغلت اللعبة ولم يظهر لك المنيو (القائمة)",
-          "html": "<div>\n<div>\n<p><strong>الحل:</strong> غالباً تكون المشكلة بسبب تعارض تسريع الأجهزة (Hardware Acceleration) في برنامج الديسكورد.</p>\n<ul>\n<li>افتح إعدادات الديسكورد وتوجه إلى <strong>Appearance</strong> (المظهر) كما هو موضح في الصورة بالأسفل.</li>\n<li>قم بإيقاف تفعيل خيار <strong>Hardware Acceleration</strong> وأعد تشغيل الديسكورد.</li>\n<li>لمزيد من التوضيح والتفاصيل، يمكنك مشاهدة هذا الشرح المرئي: <a href=\"https://youtu.be/Csb9LkITiAc?si=ogU6ycXo6ht9mvGK\" rel=\"noopener noreferrer\" target=\"_blank\">🎬 فيديو حل مشكلة عدم ظهور المنيو</a></li>\n</ul>\n</div>\n</div>"
+          "html": "<div>\n<div>\n<p><strong>الحل:</strong> غالباً تكون المشكلة بسبب تعارض تسريع الأجهزة (Hardware Acceleration) في برنامج الديسكورد.</p>\n<ul>\n<li>افتح إعدادات الديسكورد وتوجه إلى <strong>Appearance</strong> (المظهر) كما هو موضح في الصورة بالأسفل.</li>\n<li>قم بإيقاف تفعيل خيار <strong>Hardware Acceleration</strong> وأعد تشغيل الديسكورد.</li>\n<li>لمزيد من التوضيح والتفاصيل، يمكنك مشاهدة هذا الشرح المرئي: </li>\n</ul>\n</div>\n</div>"
         },
         {
           "id": "error-1",
@@ -496,11 +491,6 @@
       "source": "https://rlfs.cloud/solutions/inferno",
       "sections": [
         {
-          "id": "section-1",
-          "title": "شرح تشغيل أداة أنفيرنو لأوفرواتش (Tutorial)",
-          "html": "<div>\n<div>\n<span>🎥</span>\n</div>\n<p>هذا الفيديو يوضح لك طريقة التحميل وتفعيل المفتاح والتشغيل داخل اللعبة بشكل مفصل.<br/> <strong>ملاحظة هامة:</strong> لإظهار وإخفاء القائمة (المنيو) داخل اللعبة، قم بالضغط على زر <code>Insert</code> في الكيبورد.</p>\n<div>\n<a href=\"https://www.youtube.com/embed/f7ocdI1uS3g\" rel=\"noopener noreferrer\" target=\"_blank\">Watch tutorial / مشاهدة الشرح</a>\n</div>\n</div>"
-        },
-        {
           "id": "section-2",
           "title": "رابط تحميل لودر أنفيرنو (Inferno Loader)",
           "html": "<div>\n<div>\n<span>📥</span>\n</div>\n<p>يمكنك الانتقال المباشر إلى الصفحة الرسمية لتسجيل الدخول وتحميل اللودر المحدث للأداة من خلال الزر أدناه:</p>\n<center>\n<a href=\"https://inferno.cx/login\" rel=\"noopener noreferrer\" target=\"_blank\">🌐 فتح صفحة لودر أنفيرنو</a>\n</center>\n</div>"
@@ -558,7 +548,7 @@
         {
           "id": "section-1",
           "title": "تحميل اللودر والشرح المرئي الكامل للمنتج",
-          "html": "<div>\n<div>\n<span>🎬</span>\n</div>\n<p>قم بتنزيل اللودر المعتمد رسمياً لنسخة Marvel Rivals من الرابط المباشر الآمن التالي:</p>\n<center>\nرابط التحميل في المصدر غير متاح حالياً. / Source download unavailable.\n</center>\n<p>يرجى مشاهدة المقطع التوضيحي أدناه بدقة لمتابعة خطوات التفعيل الصحيحة وتفادي الأخطاء:</p>\n<div>\n<a href=\"https://www.youtube.com/embed/pprtPH7ZDLU\" rel=\"noopener noreferrer\" target=\"_blank\">Watch tutorial / مشاهدة الشرح</a>\n</div>\n</div>"
+          "html": "<div>\n<div>\n<span>🎬</span>\n</div>\n<p>قم بتنزيل اللودر المعتمد رسمياً لنسخة Marvel Rivals من الرابط المباشر الآمن التالي:</p>\n<center>\nرابط التحميل في المصدر غير متاح حالياً. / Source download unavailable.\n</center>\n<p>يرجى مشاهدة المقطع التوضيحي أدناه بدقة لمتابعة خطوات التفعيل الصحيحة وتفادي الأخطاء:</p>\n<div>\n\n</div>\n</div>"
         }
       ],
       "reviewCount": 1
