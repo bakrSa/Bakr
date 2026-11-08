@@ -1,0 +1,1 @@
+export async function onRequestGet(){return new Response(null,{status:302,headers:{"Location":"/admin/","Set-Cookie":"bakr_admin=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0","Cache-Control":"no-store"}})}
