@@ -19,7 +19,7 @@ export async function onRequestGet({request,env}) {
   const [userResponse,repoResponse]=await Promise.all([fetch("https://api.github.com/user",{headers}),fetch("https://api.github.com/repos/bakrSa/Bakr",{headers})]);
   if(!userResponse.ok||!repoResponse.ok)return new Response("GitHub access denied.",{status:403});
   const user=await userResponse.json(),repo=await repoResponse.json();
-  if(String(user.id)!=="353833868"||user.login.toLowerCase()!==env.GITHUB_ADMIN_LOGIN.toLowerCase()||!repo.permissions?.push)return new Response("This account is not authorized.",{status:403});
+  if(!((String(user.id)==="353833868"&&user.login.toLowerCase()===env.GITHUB_ADMIN_LOGIN.toLowerCase())||(String(user.id)==="354216726"&&user.login.toLowerCase()==="asiri1112"))||!repo.permissions?.push)return new Response("This account is not authorized.",{status:403});
   const session=await encrypt({token:token.access_token,login:user.login,id:String(user.id),exp:Date.now()+8*60*60*1000},env.ADMIN_SESSION_SECRET);
   const response = new Response(null,{status:302,headers:{"Location":"/admin/","Set-Cookie":`bakr_admin=${session}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800`,"Cache-Control":"no-store","Referrer-Policy":"no-referrer"}});
   response.headers.append("Set-Cookie","bakr_oauth_state=; Path=/auth; HttpOnly; Secure; SameSite=Lax; Max-Age=0");
