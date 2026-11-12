@@ -50,3 +50,9 @@ These source sections were not silently rewritten. They are excluded from public
 The source directory explicitly labels Spoofer as Permanent and Spoofer1 as permanent without formatting. These are now labelled Perm in BAKR. Temp has no usable source. Eleven ordinary error entries per Arcane/Ancient guide were recovered separately from the mixed-risk errors section; only the remaining security/storage/system changes are withheld.
 
 Missing image: `https://rlfs.cloud/solutions/image_9a557e.png` (404). Dead download: `https://rlfs.cloud/MarvelRivals` (404). The reference FUTLIC 27 URL actually identifies FUTLIC 26 / EA FC 26, so it was not republished as FC 27.
+
+## Recovery audit — 2026-11-12
+
+Reviewed all fetched repository branches/history and the uploaded `BAKR-original-solution-pages.zip` (version 3). The archive contains only Fortnite, Ancient and Arcane HTML and one image. It does not supply MW2, Thunex, DBD Nova/Unlocker or Temp instructions. Repository history has only a recovery placeholder for standalone DControl; archive references concern disabling security, excluded under the owner's current instruction. No terminated Mintlify host was accessed.
+
+All 13 existing guides and 56 sections remain. Repaired two empty/malformed href values in Arcane/Ancient error-1 without replacing their text or inventing destinations. Replaced the incorrectly named Battlefield image with verified Rust artwork from the existing approved image URL, stored locally. Added missing DBD artwork from Steam app 381210's official app-details header image. Existing tutorial selection remains sjaZaUnlO94 only. Product identity/FC27 compatibility gaps above remain unresolved.

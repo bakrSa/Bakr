@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-const moduleAt=async p=>import('data:text/javascript;base64,'+Buffer.from(await readFile(new URL('../'+p,import.meta.url))).toString('base64'));
+const moduleAt=async p=>import(new URL('../'+p,import.meta.url));
 const api=await moduleAt('functions/api/admin.js'),login=await moduleAt('functions/auth/login.js'),callback=await moduleAt('functions/auth/callback.js');
 const env={GITHUB_CLIENT_ID:'test-id',GITHUB_CLIENT_SECRET:'test-secret',GITHUB_ADMIN_LOGIN:'bakrSa',ADMIN_SESSION_SECRET:'test-only-session-secret-not-for-production'};
 const origin='https://bakr-sa.pages.dev';
@@ -40,3 +40,21 @@ const friendCookie=friend.headers.getSetCookie()[0].split(';')[0];
 assert.equal((await api.onRequestPost({request:req('/api/admin',{method:'POST',headers:{Cookie:friendCookie,Origin:origin},body:JSON.stringify({sha:'a'.repeat(40),catalog})}),env})).status,200);
 ownerId=1;assert.equal((await callback.onRequestGet({request:cbReq(),env})).status,403);
 console.log('PASS: invited account requires matching ID and repository write permission; its session can save');
+
+const {validateCatalog,safeHTML}=await import('../functions/_lib/validation.js');
+assert.equal(validateCatalog(catalog),null);
+for(const html of ['<script>alert(1)</script>','<img src="/x" onerror="alert(1)">','<a href="jav&#97;script:alert(1)">x</a>','<svg><a href="/">x</a></svg>','<iframe src="/">','<a href="//evil.example">x</a>'])assert.equal(safeHTML(html),false,html);
+for(const modify of [c=>c.guides.push(c.guides[0]),c=>c.guides[0].game='unapproved',c=>c.games[0].image='javascript:alert(1)',c=>c.games[0].guides=[],c=>c.guides[0].route='/admin/']){const c=structuredClone(catalog);modify(c);assert.ok(validateCatalog(c));}
+ownerId=353833868;loginName='bakrSa';canPush=true;
+const signed=await callback.onRequestGet({request:cbReq(),env});const signedCookie=signed.headers.getSetCookie()[0].split(';')[0];
+const upload=body=>api.onRequestPost({request:req('/api/admin',{method:'POST',headers:{Cookie:signedCookie,Origin:origin},body:JSON.stringify(body)}),env});
+assert.equal((await upload({action:'upload',type:'image/svg+xml',content:'PHN2Zz4='})).status,400);
+assert.equal((await upload({action:'upload',type:'image/png',content:'PHN2Zz4='})).status,400);
+const png='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aX1EAAAAASUVORK5CYII=';
+assert.equal((await upload({action:'upload',type:'image/png',content:png})).status,200);
+canPush=false;assert.equal((await upload({action:'upload',type:'image/png',content:png})).status,401);
+const route=await import('../functions/solutions/[[path]].js');
+const routeEnv={ASSETS:{fetch:async url=>url.pathname.endsWith('catalog.json')?Response.json(catalog):new Response('<main id="app"></main>',{headers:{'Content-Type':'text/html'}})}};
+assert.equal((await route.onRequestGet({request:req(catalog.guides[0].route),env:routeEnv})).status,200);
+assert.equal((await route.onRequestGet({request:req('/solutions/unknown/'),env:routeEnv})).status,404);
+console.log('PASS: HTML injection, invalid associations, duplicate routes, unsafe image URLs, upload type/signature checks, permission revocation, dynamic guide routes');

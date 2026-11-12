@@ -37,3 +37,13 @@ HTTP success confirms reachability only, not executable safety or successful ins
 | https://youtu.be/WJXuWcKyI6Q | 200 |
 
 Dead Marvel Rivals download button removed. Missing Arcane/Ancient source image `image_9a557e.png` returned 404 and was omitted. Other rejected or unverifiable links are retained from the source for review.
+
+## Completion implementation — 2026-11-12
+
+Restore point: backup/before-completion-2026-11-12 at the prior main head.
+
+`npm test` passes: all 11 categories/images, 13 routes, 56 guide sections, language controls, OAuth callback/state/owner/collaborator checks, session encryption, CSRF, live permission recheck (mocked upstream), catalog associations, duplicate IDs/routes, unsafe HTML/URLs, image signatures/types, dynamic guide routes. Original section counts/titles preserved; only two malformed anchors were repaired.
+
+Editor supports guide/section creation within approved games, editing game metadata and notes, image uploads/library selection, draft export, unsaved-change warning, GitHub conflict reporting, and polling for published catalog equality. New guides resolve through Pages Functions without manually adding HTML files. No new game category was added.
+
+Local browser preview was unavailable: its loopback endpoint returned a bearer-token error. Production HTTP requests from the executor returned 403; these are not evidence of a website outage. Browser verification is performed separately after deployment. Authenticated saves and image uploads require a valid owner/collaborator browser session and must not be reported as live-tested based on mocked tests alone.

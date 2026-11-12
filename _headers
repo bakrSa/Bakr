@@ -2,3 +2,11 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
+/assets/catalog.json
+  Cache-Control: no-cache
+/assets/app.js
+  Cache-Control: no-cache
+/assets/admin.js
+  Cache-Control: no-cache
+/admin/*
+  Cache-Control: no-store

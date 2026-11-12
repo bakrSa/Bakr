@@ -22,3 +22,10 @@ for guide in data['guides']:
 for route in ['fortnite','ancientfix','Arcane']:
  assert 'iframe' not in (ROOT/'solutions'/route/'index.html').read_text()
 print(f"PASS: {len(expected)} approved games, {len(data['guides'])} guide routes, {sum(len(g['sections']) for g in data['guides'])} content sections; local media and embed checks passed.")
+for game in data['games']:
+ assert game.get('image'),game['slug']
+ if game['image'].startswith('/'): assert (ROOT/game['image'].lstrip('/')).exists()
+for page in [ROOT/'index.html',ROOT/'requirements/index.html',*ROOT.glob('games/*/index.html'),*ROOT.glob('solutions/*/index.html')]:
+ assert 'id="language"' in page.read_text(),page
+assert 'sjaZaUnlO94' in (ROOT/'assets/app.js').read_text()
+print('PASS: all 11 game images and language controls on all documentation pages')

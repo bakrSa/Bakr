@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"test":"node tests/admin-auth.mjs && python3 scripts/check_site.py"}}
